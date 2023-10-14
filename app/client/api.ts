@@ -118,7 +118,7 @@ export class ClientApi {
         avatarUrl,
         model: model,
         items: msgs,
-        title: DEFAULT_TOPIC,
+        // title: DEFAULT_TOPIC,
       }),
       headers: {
         "Content-Type": "application/json",
