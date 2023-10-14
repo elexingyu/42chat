@@ -77,6 +77,7 @@ git pull https://github.com/Yidadaa/ChatGPT-Next-Web.git
 2、修改【分享到 42Share】按钮
 
 位置：app\components\exporter.tsx
+接口：app\client\api.ts
 
 3、修改对话太长会自动隐藏前面对话的特性
 
