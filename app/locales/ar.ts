@@ -63,7 +63,7 @@ const ar: PartialLocaleType = {
     Download: "تنزيل",
     MessageFromYou: "رسالة منك",
     MessageFromChatGPT: "رسالة من ChatGPT",
-    Share: "مشاركة على ShareGPT",
+    Share: "مشاركة على 42Share",
     Format: {
       Title: "صيغة التصدير",
       SubTitle: "Markdown أو صورة PNG",

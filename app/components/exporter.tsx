@@ -354,13 +354,13 @@ export function PreviewActions(props: {
           icon={<DownloadIcon />}
           onClick={props.download}
         ></IconButton>
-        <IconButton
+        {/* <IconButton
           text={Locale.Export.Share}
           bordered
           shadow
           icon={loading ? <LoadingIcon /> : <ShareIcon />}
           onClick={share}
-        ></IconButton>
+        ></IconButton> */}
       </div>
       <div
         style={{
@@ -437,13 +437,13 @@ export function ImagePreviewer(props: {
     showToast(Locale.Export.Image.Toast);
     const dom = previewRef.current;
     if (!dom) return;
-  
+
     const isApp = getClientConfig()?.isApp;
-  
+
     try {
       const blob = await toPng(dom);
       if (!blob) return;
-  
+
       if (isMobile || (isApp && window.__TAURI__)) {
         if (isApp && window.__TAURI__) {
           const result = await window.__TAURI__.dialog.save({
@@ -459,7 +459,7 @@ export function ImagePreviewer(props: {
               },
             ],
           });
-  
+
           if (result !== null) {
             const response = await fetch(blob);
             const buffer = await response.arrayBuffer();
