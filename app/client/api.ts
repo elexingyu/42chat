@@ -114,12 +114,22 @@ export class ClientApi {
         "Content-Type": "application/json",
       },
       method: "POST",
+      // mode: 'cors', // no-cors, *cors, same-origin
+      // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      // credentials: 'same-origin', // include, *same-origin, omit
+      credentials: "include",
     });
 
-    const resJson = await res.json();
-    console.log("[Share]", resJson);
-    if (resJson.id) {
-      return `https://42share.com/${resJson.id}`;
+    if (res.ok) {
+      const { id } = await res.json();
+      const resJson = await res.json();
+      console.log("[Share]", resJson);
+      if (resJson.id) {
+        return `https://42share.com/${resJson.id}`;
+      }
+    } else {
+      const { message } = await res.json();
+      alert(`分享失败：${message}`);
     }
 
     // const clientConfig = getClientConfig();
