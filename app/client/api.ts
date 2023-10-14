@@ -2,7 +2,8 @@ import { getClientConfig } from "../config/client";
 import { ACCESS_CODE_PREFIX } from "../constant";
 import { ChatMessage, ModelType, useAccessStore } from "../store";
 import { ChatGPTApi } from "./platforms/openai";
-import { useAppConfig } from "../store";
+// add by ynx
+import { useChatStore, useAppConfig, DEFAULT_TOPIC } from "../store";
 
 export const ROLES = ["system", "user", "assistant"] as const;
 export type MessageRole = (typeof ROLES)[number];
@@ -102,17 +103,22 @@ export class ClientApi {
 
     console.log("[Share]", messages, msgs);
 
+    // changed by ynx
     const clientConfig = getClientConfig();
     const config = useAppConfig.getState();
+    // 获取模型
     const model = config.modelConfig.model;
-    console.log(model);
-    const rawUrl = "https://42share.com/srv/ext/conversation";
-    const shareUrl = rawUrl;
+    // 获取标题
+    // const chatStore = useChatStore();
+    // const session = chatStore.currentSession();
+    // const title = !session.topic ? DEFAULT_TOPIC : session.topic
+    const shareUrl = "https://42share.com/srv/ext/conversation";
     const res = await fetch(shareUrl, {
       body: JSON.stringify({
         avatarUrl,
         model: model,
         items: msgs,
+        title: DEFAULT_TOPIC,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -131,6 +137,7 @@ export class ClientApi {
       const { message } = await res.json();
       alert(`分享失败：${message}`);
     }
+    // changed end
   }
 }
 
