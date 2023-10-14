@@ -74,13 +74,21 @@ git pull https://github.com/Yidadaa/ChatGPT-Next-Web.git
 
 操作：查找代码中所有 ShareGPT 字段，改为 42Share
 
-2、注释掉 分享到 42Share 按钮
+2、修改【分享到 42Share】按钮
 
 位置：app\components\exporter.tsx
 
 3、修改对话太长会自动隐藏前面对话的特性
 
 新版本似乎已经移除
+
+4、隐藏侧边栏左下角的github的仓库链接
+
+位置：app\components\sidebar.tsx
+
+5、隐藏【设置】中的【检查更新】按钮
+
+位置：app\components\settings.tsx
 
 ## changelog
 
