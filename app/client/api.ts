@@ -102,7 +102,7 @@ export class ClientApi {
     console.log("[Share]", messages, msgs);
 
     // const clientConfig = getClientConfig();
-    const rawUrl = "https://42share.com/ext/conversation";
+    const rawUrl = "https://42share.com/srv/ext/conversation";
     const shareUrl = rawUrl;
     const res = await fetch(shareUrl, {
       body: JSON.stringify({
