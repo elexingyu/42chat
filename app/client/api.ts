@@ -2,6 +2,7 @@ import { getClientConfig } from "../config/client";
 import { ACCESS_CODE_PREFIX } from "../constant";
 import { ChatMessage, ModelType, useAccessStore } from "../store";
 import { ChatGPTApi } from "./platforms/openai";
+import { useAppConfig } from "../store";
 
 export const ROLES = ["system", "user", "assistant"] as const;
 export type MessageRole = (typeof ROLES)[number];
@@ -101,22 +102,22 @@ export class ClientApi {
 
     console.log("[Share]", messages, msgs);
 
-    // const clientConfig = getClientConfig();
+    const clientConfig = getClientConfig();
+    const config = useAppConfig.getState();
+    const model = config.modelConfig.model;
+    console.log(model);
     const rawUrl = "https://42share.com/srv/ext/conversation";
     const shareUrl = rawUrl;
     const res = await fetch(shareUrl, {
       body: JSON.stringify({
         avatarUrl,
-        model: "gpt",
+        model: model,
         items: msgs,
       }),
       headers: {
         "Content-Type": "application/json",
       },
       method: "POST",
-      // mode: 'cors', // no-cors, *cors, same-origin
-      // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      // credentials: 'same-origin', // include, *same-origin, omit
       credentials: "include",
     });
 
@@ -130,27 +131,6 @@ export class ClientApi {
       const { message } = await res.json();
       alert(`分享失败：${message}`);
     }
-
-    // const clientConfig = getClientConfig();
-    // const proxyUrl = "/gpt";
-    // const rawUrl = "https://42share.com/api/conversations";
-    // const shareUrl = clientConfig?.isApp ? rawUrl : proxyUrl;
-    // const res = await fetch(shareUrl, {
-    //   body: JSON.stringify({
-    //     avatarUrl,
-    //     items: msgs,
-    //   }),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   method: "POST",
-    // });
-
-    // const resJson = await res.json();
-    // console.log("[Share]", resJson);
-    // if (resJson.id) {
-    //   return `https://shareg.pt/${resJson.id}`;
-    // }
   }
 }
 
