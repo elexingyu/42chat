@@ -124,7 +124,7 @@ export class ClientApi {
       const resJson = await res.json();
       console.log("[Share]", resJson);
       if (resJson.id) {
-        return `https://42share.com/${resJson.id}`;
+        return `https://42share.com/gpt/${resJson.id}`;
       }
     } else {
       const { message } = await res.json();
