@@ -121,7 +121,6 @@ export class ClientApi {
     });
 
     if (res.ok) {
-      const { id } = await res.json();
       const resJson = await res.json();
       console.log("[Share]", resJson);
       if (resJson.id) {
