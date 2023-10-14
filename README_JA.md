@@ -48,7 +48,7 @@
 - [x] システムプロンプト: ユーザー定義のプロンプトをシステムプロンプトとして固定 [#138](https://github.com/Yidadaa/ChatGPT-Next-Web/issues/138)
 - [x] ユーザープロンプト: ユーザはカスタムプロンプトを編集し、プロンプトリストに保存することができます。
 - [x] プロンプトテンプレート: 事前に定義されたインコンテキストプロンプトで新しいチャットを作成 [#993](https://github.com/Yidadaa/ChatGPT-Next-Web/issues/993)
-- [x] イメージとして共有、ShareGPT への共有 [#1741](https://github.com/Yidadaa/ChatGPT-Next-Web/pull/1741)
+- [x] イメージとして共有、42Share への共有 [#1741](https://github.com/Yidadaa/ChatGPT-Next-Web/pull/1741)
 - [x] tauri を使ったデスクトップアプリ
 - [x] セルフホストモデル: [RWKV-Runner](https://github.com/josStorer/RWKV-Runner) と完全に互換性があり、[LocalAI](https://github.com/go-skynet/LocalAI) のサーバーデプロイも可能です: llama/gpt4all/rwkv/vicuna/koala/gpt4all-j/cerebras/falcon/dolly など
 - [ ] プラグイン: ネットワーク検索、計算機、その他のAPIなどをサポート [#165](https://github.com/Yidadaa/ChatGPT-Next-Web/issues/165)
@@ -57,7 +57,7 @@
 
 - 🚀 v2.0 がリリースされ、プロンプト・テンプレートが作成できるようになりました！こちらをお読みください: [ChatGPT プロンプトエンジニアリング Tips: ゼロ、一発、数発プロンプト](https://www.allabtai.com/prompt-engineering-tips-zero-one-and-few-shot-prompting/)。
 - 💡 このプロジェクトをいつでもどこでも簡単に使いたいですか？このデスクトッププラグインをお試しください: https://github.com/mushan0x0/AI0x0.com
-- 🚀 v2.7 では、会話を画像として共有したり、ShareGPT に共有することができます！
+- 🚀 v2.7 では、会話を画像として共有したり、42Share に共有することができます！
 - 🚀 v2.8 全てのプラットフォームで動作するクライアントができました！
 
 ## 始める
