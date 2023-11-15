@@ -91,6 +91,10 @@ git pull https://github.com/Yidadaa/ChatGPT-Next-Web.git
 
 位置：app\components\settings.tsx
 
+6、修改标题
+
+位置：app\components\sidebar.tsx
+
 ## changelog
 
 - 20231014：添加修改功能部分
