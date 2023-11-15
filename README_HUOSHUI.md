@@ -20,9 +20,9 @@ vercel监控 main 分支，当有代码推送到 main 时，生产环境会自�
 
 有以下域名使用到这个项目
 
-1. https://vip.42share.io/
-2. https://pro.42share.io/
-3. https://42chat.io/
+1. https://42chat.io/
+2. https://vip.42share.io/ (已废弃)
+3. https://pro.42share.io/ (已废弃)
 
 ### 注意事项
 
@@ -42,10 +42,10 @@ vercel会使用`yarn run build`命令进行部署，因此需要确保本地可�
 
 ## 如何拉取最新代码
 
-1、切换到dev分支
+1、切换到ori分支
 
 ```
-git checkout dev
+git checkout ori
 ```
 
 2、执行下面命令，从官方仓库拉取最新代码
@@ -58,7 +58,7 @@ git pull https://github.com/Yidadaa/ChatGPT-Next-Web.git
 
 4、测试没问题后，合并到main，push并部署到生产环境
 
-## 登录功能
+## 登录功能（已去除）
 
 我们私加了一个帐号登录功能，其实是设置里的【访问密码】的另一种形式，并没有相关后端接口和用户数据库。
 
