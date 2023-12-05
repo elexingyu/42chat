@@ -91,9 +91,16 @@ git pull https://github.com/Yidadaa/ChatGPT-Next-Web.git
 
 位置：app\components\settings.tsx
 
-6、修改标题
+6、修改标题，把【ChatGPT Next Web】改为【42Chat】
 
-位置：app\components\sidebar.tsx
+位置：
+
+- app/components/sidebar.tsx
+- app/components/exporter.tsx
+- app/layout.tsx
+- app/store/update.ts
+- public/site.webmanifest
+- src-tauri/tauri.conf.json
 
 ## changelog
 
