@@ -43,6 +43,7 @@ export const DEFAULT_CONFIG = {
   hideBuiltinMasks: false, // dont add builtin masks
 
   customModels: "",
+  // customModels: "qwen-turbo,qwen-plus,text-embedding-v1,SparkDesk,ERNIE-Bot,ERNIE-Bot-turbo,ERNIE-Bot-4,Embedding-V1,chatglm_turbo,chatglm_pro,chatglm_std,chatglm_lite,gpt-3.5-turbo-1106",
   models: DEFAULT_MODELS as any as LLMModel[],
 
   modelConfig: {
