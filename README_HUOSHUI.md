@@ -102,6 +102,16 @@ git pull https://github.com/Yidadaa/ChatGPT-Next-Web.git
 - public/site.webmanifest
 - src-tauri/tauri.conf.json
 
+7、支持的默认模型添加下面模型
+
+```
+qwen-turbo,qwen-plus,text-embedding-v1,SparkDesk,ERNIE-Bot,ERNIE-Bot-turbo,ERNIE-Bot-4,Embedding-V1,chatglm_turbo,chatglm_pro,chatglm_std,chatglm_lite,gpt-3.5-turbo-1106
+```
+
+8、隐藏检查最新版本的提示
+
+位置：app\components\settings.tsx
+
 ## changelog
 
 - 20231014：添加修改功能部分
