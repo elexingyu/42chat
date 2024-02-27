@@ -157,8 +157,17 @@ export const DEFAULT_MODELS = [
       providerType: "openai",
     },
   },
+  // {
+  //   name: "gpt-4-32k-0613",
+  //   available: true,
+  //   provider: {
+  //     id: "openai",
+  //     providerName: "OpenAI",
+  //     providerType: "openai",
+  //   },
+  // },
   {
-    name: "gpt-4-32k-0613",
+    name: "gpt-4-1106-preview",
     available: true,
     provider: {
       id: "openai",
@@ -167,7 +176,7 @@ export const DEFAULT_MODELS = [
     },
   },
   {
-    name: "gpt-4-1106-preview",
+    name: "gpt-4-0125-preview",
     available: true,
     provider: {
       id: "openai",
@@ -184,15 +193,15 @@ export const DEFAULT_MODELS = [
       providerType: "openai",
     },
   },
-  {
-    name: "gpt-3.5-turbo",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
+  // {
+  //   name: "gpt-3.5-turbo",
+  //   available: true,
+  //   provider: {
+  //     id: "openai",
+  //     providerName: "OpenAI",
+  //     providerType: "openai",
+  //   },
+  // },
   // {
   //   name: "gpt-3.5-turbo-0301",
   //   available: true,
