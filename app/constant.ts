@@ -258,15 +258,16 @@ export const DEFAULT_MODELS = [
   //   },
   // },
 
-  // {
-  //   name: "gemini-pro",
-  //   available: true,
-  //   provider: {
-  //     id: "google",
-  //     providerName: "Google",
-  //     providerType: "google",
-  //   },
-  // },
+  {
+    name: "gemini-pro",
+    available: true,
+    provider: {
+      id: "google",
+      providerName: "Google",
+      providerType: "google",
+    },
+  },
+
   // {
   //   name: "qwen-turbo",
   //   available: true,
