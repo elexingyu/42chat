@@ -121,33 +121,33 @@ export const DEFAULT_MODELS = [
       providerType: "openai",
     },
   },
-  {
-    name: "gpt-4-0314",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-4-0613",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-4-32k",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
+  // {
+  //   name: "gpt-4-0314",
+  //   available: true,
+  //   provider: {
+  //     id: "openai",
+  //     providerName: "OpenAI",
+  //     providerType: "openai",
+  //   },
+  // },
+  // {
+  //   name: "gpt-4-0613",
+  //   available: true,
+  //   provider: {
+  //     id: "openai",
+  //     providerName: "OpenAI",
+  //     providerType: "openai",
+  //   },
+  // },
+  // {
+  //   name: "gpt-4-32k",
+  //   available: true,
+  //   provider: {
+  //     id: "openai",
+  //     providerName: "OpenAI",
+  //     providerType: "openai",
+  //   },
+  // },
   {
     name: "gpt-4-32k-0314",
     available: true,
@@ -193,24 +193,24 @@ export const DEFAULT_MODELS = [
       providerType: "openai",
     },
   },
-  {
-    name: "gpt-3.5-turbo-0301",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-3.5-turbo-0613",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
+  // {
+  //   name: "gpt-3.5-turbo-0301",
+  //   available: true,
+  //   provider: {
+  //     id: "openai",
+  //     providerName: "OpenAI",
+  //     providerType: "openai",
+  //   },
+  // },
+  // {
+  //   name: "gpt-3.5-turbo-0613",
+  //   available: true,
+  //   provider: {
+  //     id: "openai",
+  //     providerName: "OpenAI",
+  //     providerType: "openai",
+  //   },
+  // },
   {
     name: "gpt-3.5-turbo-1106",
     available: true,
@@ -221,7 +221,7 @@ export const DEFAULT_MODELS = [
     },
   },
   {
-    name: "gpt-3.5-turbo-16k",
+    name: "gpt-3.5-turbo-0125",
     available: true,
     provider: {
       id: "openai",
@@ -229,15 +229,26 @@ export const DEFAULT_MODELS = [
       providerType: "openai",
     },
   },
-  {
-    name: "gpt-3.5-turbo-16k-0613",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
+
+  // {
+  //   name: "gpt-3.5-turbo-16k",
+  //   available: true,
+  //   provider: {
+  //     id: "openai",
+  //     providerName: "OpenAI",
+  //     providerType: "openai",
+  //   },
+  // },
+  // {
+  //   name: "gpt-3.5-turbo-16k-0613",
+  //   available: true,
+  //   provider: {
+  //     id: "openai",
+  //     providerName: "OpenAI",
+  //     providerType: "openai",
+  //   },
+  // },
+
   {
     name: "gemini-pro",
     available: true,
@@ -252,8 +263,8 @@ export const DEFAULT_MODELS = [
     available: true,
     provider: {
       id: "qwen",
-      providerName: "",
-      providerType: "",
+      providerName: "ali",
+      providerType: "ali",
     },
   },
   {
@@ -261,8 +272,8 @@ export const DEFAULT_MODELS = [
     available: true,
     provider: {
       id: "qwen",
-      providerName: "",
-      providerType: "",
+      providerName: "ali",
+      providerType: "ali",
     },
   },
   {
@@ -270,8 +281,8 @@ export const DEFAULT_MODELS = [
     available: true,
     provider: {
       id: "",
-      providerName: "",
-      providerType: "",
+      providerName: "ali",
+      providerType: "ali",
     },
   },
   {
@@ -279,8 +290,8 @@ export const DEFAULT_MODELS = [
     available: true,
     provider: {
       id: "",
-      providerName: "",
-      providerType: "",
+      providerName: "xunfei",
+      providerType: "xunfei",
     },
   },
   {
@@ -288,8 +299,8 @@ export const DEFAULT_MODELS = [
     available: true,
     provider: {
       id: "",
-      providerName: "",
-      providerType: "",
+      providerName: "baidu",
+      providerType: "baidu",
     },
   },
   {
@@ -297,8 +308,8 @@ export const DEFAULT_MODELS = [
     available: true,
     provider: {
       id: "",
-      providerName: "",
-      providerType: "",
+      providerName: "baidu",
+      providerType: "baidu",
     },
   },
   {
@@ -306,8 +317,8 @@ export const DEFAULT_MODELS = [
     available: true,
     provider: {
       id: "",
-      providerName: "",
-      providerType: "",
+      providerName: "baidu",
+      providerType: "baidu",
     },
   },
   {
@@ -315,8 +326,8 @@ export const DEFAULT_MODELS = [
     available: true,
     provider: {
       id: "",
-      providerName: "",
-      providerType: "",
+      providerName: "baidu",
+      providerType: "baidu",
     },
   },
   {
@@ -324,8 +335,8 @@ export const DEFAULT_MODELS = [
     available: true,
     provider: {
       id: "",
-      providerName: "",
-      providerType: "",
+      providerName: "zhipuai",
+      providerType: "zhipuai",
     },
   },
   {
@@ -333,8 +344,8 @@ export const DEFAULT_MODELS = [
     available: true,
     provider: {
       id: "",
-      providerName: "",
-      providerType: "",
+      providerName: "zhipuai",
+      providerType: "zhipuai",
     },
   },
   {
@@ -342,8 +353,8 @@ export const DEFAULT_MODELS = [
     available: true,
     provider: {
       id: "",
-      providerName: "",
-      providerType: "",
+      providerName: "zhipuai",
+      providerType: "zhipuai",
     },
   },
   {
@@ -351,8 +362,8 @@ export const DEFAULT_MODELS = [
     available: true,
     provider: {
       id: "",
-      providerName: "",
-      providerType: "",
+      providerName: "zhipuai",
+      providerType: "zhipuai",
     },
   },
 ] as const;
