@@ -258,123 +258,123 @@ export const DEFAULT_MODELS = [
   //   },
   // },
 
-  {
-    name: "gemini-pro",
-    available: true,
-    provider: {
-      id: "google",
-      providerName: "Google",
-      providerType: "google",
-    },
-  },
-  {
-    name: "qwen-turbo",
-    available: true,
-    provider: {
-      id: "qwen",
-      providerName: "ali",
-      providerType: "ali",
-    },
-  },
-  {
-    name: "qwen-plus",
-    available: true,
-    provider: {
-      id: "qwen",
-      providerName: "ali",
-      providerType: "ali",
-    },
-  },
-  {
-    name: "text-embedding-v1",
-    available: true,
-    provider: {
-      id: "qwen",
-      providerName: "ali",
-      providerType: "ali",
-    },
-  },
-  {
-    name: "SparkDesk",
-    available: true,
-    provider: {
-      id: "xunfei",
-      providerName: "xunfei",
-      providerType: "xunfei",
-    },
-  },
-  {
-    name: "ERNIE-Bot",
-    available: true,
-    provider: {
-      id: "baidu",
-      providerName: "baidu",
-      providerType: "baidu",
-    },
-  },
-  {
-    name: "ERNIE-Bot-turbo",
-    available: true,
-    provider: {
-      id: "baidu",
-      providerName: "baidu",
-      providerType: "baidu",
-    },
-  },
-  {
-    name: "ERNIE-Bot-4",
-    available: true,
-    provider: {
-      id: "baidu",
-      providerName: "baidu",
-      providerType: "baidu",
-    },
-  },
-  {
-    name: "Embedding-V1",
-    available: true,
-    provider: {
-      id: "baidu",
-      providerName: "baidu",
-      providerType: "baidu",
-    },
-  },
-  {
-    name: "chatglm_turbo",
-    available: true,
-    provider: {
-      id: "zhipuai",
-      providerName: "zhipuai",
-      providerType: "zhipuai",
-    },
-  },
-  {
-    name: "chatglm_pro",
-    available: true,
-    provider: {
-      id: "zhipuai",
-      providerName: "zhipuai",
-      providerType: "zhipuai",
-    },
-  },
-  {
-    name: "chatglm_std",
-    available: true,
-    provider: {
-      id: "zhipuai",
-      providerName: "zhipuai",
-      providerType: "zhipuai",
-    },
-  },
-  {
-    name: "chatglm_lite",
-    available: true,
-    provider: {
-      id: "zhipuai",
-      providerName: "zhipuai",
-      providerType: "zhipuai",
-    },
-  },
+  // {
+  //   name: "gemini-pro",
+  //   available: true,
+  //   provider: {
+  //     id: "google",
+  //     providerName: "Google",
+  //     providerType: "google",
+  //   },
+  // },
+  // {
+  //   name: "qwen-turbo",
+  //   available: true,
+  //   provider: {
+  //     id: "qwen",
+  //     providerName: "ali",
+  //     providerType: "ali",
+  //   },
+  // },
+  // {
+  //   name: "qwen-plus",
+  //   available: true,
+  //   provider: {
+  //     id: "qwen",
+  //     providerName: "ali",
+  //     providerType: "ali",
+  //   },
+  // },
+  // {
+  //   name: "text-embedding-v1",
+  //   available: true,
+  //   provider: {
+  //     id: "qwen",
+  //     providerName: "ali",
+  //     providerType: "ali",
+  //   },
+  // },
+  // {
+  //   name: "SparkDesk",
+  //   available: true,
+  //   provider: {
+  //     id: "xunfei",
+  //     providerName: "xunfei",
+  //     providerType: "xunfei",
+  //   },
+  // },
+  // {
+  //   name: "ERNIE-Bot",
+  //   available: true,
+  //   provider: {
+  //     id: "baidu",
+  //     providerName: "baidu",
+  //     providerType: "baidu",
+  //   },
+  // },
+  // {
+  //   name: "ERNIE-Bot-turbo",
+  //   available: true,
+  //   provider: {
+  //     id: "baidu",
+  //     providerName: "baidu",
+  //     providerType: "baidu",
+  //   },
+  // },
+  // {
+  //   name: "ERNIE-Bot-4",
+  //   available: true,
+  //   provider: {
+  //     id: "baidu",
+  //     providerName: "baidu",
+  //     providerType: "baidu",
+  //   },
+  // },
+  // {
+  //   name: "Embedding-V1",
+  //   available: true,
+  //   provider: {
+  //     id: "baidu",
+  //     providerName: "baidu",
+  //     providerType: "baidu",
+  //   },
+  // },
+  // {
+  //   name: "chatglm_turbo",
+  //   available: true,
+  //   provider: {
+  //     id: "zhipuai",
+  //     providerName: "zhipuai",
+  //     providerType: "zhipuai",
+  //   },
+  // },
+  // {
+  //   name: "chatglm_pro",
+  //   available: true,
+  //   provider: {
+  //     id: "zhipuai",
+  //     providerName: "zhipuai",
+  //     providerType: "zhipuai",
+  //   },
+  // },
+  // {
+  //   name: "chatglm_std",
+  //   available: true,
+  //   provider: {
+  //     id: "zhipuai",
+  //     providerName: "zhipuai",
+  //     providerType: "zhipuai",
+  //   },
+  // },
+  // {
+  //   name: "chatglm_lite",
+  //   available: true,
+  //   provider: {
+  //     id: "zhipuai",
+  //     providerName: "zhipuai",
+  //     providerType: "zhipuai",
+  //   },
+  // },
 ] as const;
 
 export const CHAT_PAGE_SIZE = 15;
