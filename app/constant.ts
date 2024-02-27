@@ -280,7 +280,7 @@ export const DEFAULT_MODELS = [
     name: "text-embedding-v1",
     available: true,
     provider: {
-      id: "",
+      id: "qwen",
       providerName: "ali",
       providerType: "ali",
     },
@@ -289,7 +289,7 @@ export const DEFAULT_MODELS = [
     name: "SparkDesk",
     available: true,
     provider: {
-      id: "",
+      id: "xunfei",
       providerName: "xunfei",
       providerType: "xunfei",
     },
@@ -298,7 +298,7 @@ export const DEFAULT_MODELS = [
     name: "ERNIE-Bot",
     available: true,
     provider: {
-      id: "",
+      id: "baidu",
       providerName: "baidu",
       providerType: "baidu",
     },
@@ -307,7 +307,7 @@ export const DEFAULT_MODELS = [
     name: "ERNIE-Bot-turbo",
     available: true,
     provider: {
-      id: "",
+      id: "baidu",
       providerName: "baidu",
       providerType: "baidu",
     },
@@ -316,7 +316,7 @@ export const DEFAULT_MODELS = [
     name: "ERNIE-Bot-4",
     available: true,
     provider: {
-      id: "",
+      id: "baidu",
       providerName: "baidu",
       providerType: "baidu",
     },
@@ -325,7 +325,7 @@ export const DEFAULT_MODELS = [
     name: "Embedding-V1",
     available: true,
     provider: {
-      id: "",
+      id: "baidu",
       providerName: "baidu",
       providerType: "baidu",
     },
@@ -334,7 +334,7 @@ export const DEFAULT_MODELS = [
     name: "chatglm_turbo",
     available: true,
     provider: {
-      id: "",
+      id: "zhipuai",
       providerName: "zhipuai",
       providerType: "zhipuai",
     },
@@ -343,7 +343,7 @@ export const DEFAULT_MODELS = [
     name: "chatglm_pro",
     available: true,
     provider: {
-      id: "",
+      id: "zhipuai",
       providerName: "zhipuai",
       providerType: "zhipuai",
     },
@@ -352,7 +352,7 @@ export const DEFAULT_MODELS = [
     name: "chatglm_std",
     available: true,
     provider: {
-      id: "",
+      id: "zhipuai",
       providerName: "zhipuai",
       providerType: "zhipuai",
     },
@@ -361,7 +361,7 @@ export const DEFAULT_MODELS = [
     name: "chatglm_lite",
     available: true,
     provider: {
-      id: "",
+      id: "zhipuai",
       providerName: "zhipuai",
       providerType: "zhipuai",
     },
