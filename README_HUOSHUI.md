@@ -10,9 +10,49 @@ yarn install
 yarn dev
 ```
 
-## 生产环境部署说明
+## sealos部署说明
 
-生产环境是部署在vercel。
+2024年07月06日开始，由于openapi不支持vercel，需要部署到sealos。
+
+由于部署到sealos需要用到docker仓库，本地需要安装好docker环境，然后构建镜像，上传到私有仓库，再从sealos拉取镜像部署。
+
+步骤：
+
+1、本地构建docker镜像，需要定好标签。
+
+```
+docker build -t 42sharecom/42chat:v1.1 .
+```
+
+参考 sh/docker-build.sh 脚本。
+
+2、推送镜像到docker的官方私有仓库，需要先登录相关docker账号，参见 sh/docker-push.sh 脚本。
+
+另外推送镜像的时候需要开梯子，最好打开全局梯子，这样才能推送镜像到docker官方私有仓库。
+
+3、使用sealos进行部署。
+
+sealos应用配置参考如下
+
+- 镜像源：私有
+- 镜像名：42sharecom/42chat:v1.1
+- 用户名：xxx
+- 密码：***
+- 镜像仓库地址：docker.io
+
+部署应用后，就会去拉取docker官方私有仓库下的 42sharecom/42chat:v1.1 镜像。
+
+另外如果需要docker pull的时候，可以使用下面命令：
+
+```
+docker pull 42sharecom/42chat:v1.1
+```
+
+## 生产环境vercel部署说明
+
+20240627更新：由于openapi不支持vercel，以下部署方式已废弃。
+
+~~生产环境是部署在vercel。~~
 
 目前有两个分支：dev和main，dev用于开发测试，main用于部署生产。
 
