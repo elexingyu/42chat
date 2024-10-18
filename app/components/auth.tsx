@@ -46,7 +46,7 @@ export function AuthPage() {
 
   return (
     <div className={styles["auth-page"]}>
-      <TopBanner></TopBanner>
+      {/* <TopBanner></TopBanner> */} {/* 隐藏顶部 nextchat 广告 */}
       <div className={styles["auth-header"]}>
         <IconButton
           icon={<LeftIcon />}
@@ -57,10 +57,8 @@ export function AuthPage() {
       <div className={`no-dark ${styles["auth-logo"]}`}>
         <BotIcon />
       </div>
-
       <div className={styles["auth-title"]}>{Locale.Auth.Title}</div>
       <div className={styles["auth-tips"]}>{Locale.Auth.Tips}</div>
-
       <PasswordInput
         style={{ marginTop: "3vh", marginBottom: "3vh" }}
         aria={Locale.Settings.ShowPassword}
@@ -74,7 +72,6 @@ export function AuthPage() {
           );
         }}
       />
-
       {!accessStore.hideUserApiKey ? (
         <>
           <div className={styles["auth-tips"]}>{Locale.Auth.SubTips}</div>
@@ -106,19 +103,19 @@ export function AuthPage() {
           />
         </>
       ) : null}
-
       <div className={styles["auth-actions"]}>
         <IconButton
           text={Locale.Auth.Confirm}
           type="primary"
           onClick={goChat}
         />
-        <IconButton
+        {/* <IconButton
           text={Locale.Auth.SaasTips}
           onClick={() => {
             goSaas();
           }}
-        />
+        /> */}{" "}
+        {/* 隐藏广告 */}
       </div>
     </div>
   );
