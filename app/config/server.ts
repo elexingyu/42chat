@@ -77,7 +77,7 @@ declare global {
   }
 }
 
-const ACCESS_CODES = (function getAccessCodes(): Set<string> {
+export const ACCESS_CODES = (function getAccessCodes(): Set<string> {
   const code = process.env.CODE;
 
   try {

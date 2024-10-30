@@ -19,6 +19,7 @@ import { getClientConfig } from "../config/client";
 import { createPersistStore } from "../utils/store";
 import { ensure } from "../utils/clone";
 import { DEFAULT_CONFIG } from "./config";
+import md5 from "spark-md5";
 
 let fetchState = 0; // 0 not fetch, 1 fetching, 2 done
 
@@ -169,6 +170,23 @@ export const useAccessStore = createPersistStore(
       return ensure(get(), ["iflytekApiKey"]);
     },
 
+    async validateAccessCode() {
+      const accessCode = get().accessCode;
+
+      try {
+        // 从 API 获取哈希后的正确密码
+        const response = await fetch("/api/config");
+        const config = await response.json();
+
+        // 验证密码
+        const hashedInputCode = md5.hash(accessCode).trim();
+        return hashedInputCode === config.hashedCode;
+      } catch (error) {
+        console.error("验证访问码失败:", error);
+        return false;
+      }
+    },
+
     isAuthorized() {
       this.fetch();
 
@@ -185,7 +203,7 @@ export const useAccessStore = createPersistStore(
         this.isValidMoonshot() ||
         this.isValidIflytek() ||
         !this.enabledAccessControl() ||
-        (this.enabledAccessControl() && ensure(get(), ["accessCode"]))
+        (this.enabledAccessControl() && this.validateAccessCode())
       );
     },
     fetch() {

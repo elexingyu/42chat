@@ -44,6 +44,16 @@ export function AuthPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleConfirm = async () => {
+    const isValid = await accessStore.validateAccessCode();
+    if (isValid) {
+      goChat();
+    } else {
+      // 可以添加错误提示
+      alert(Locale.Auth.InvalidCode);
+    }
+  };
+
   return (
     <div className={styles["auth-page"]}>
       {/* <TopBanner></TopBanner> */} {/* 隐藏顶部 nextchat 广告 */}
@@ -107,7 +117,7 @@ export function AuthPage() {
         <IconButton
           text={Locale.Auth.Confirm}
           type="primary"
-          onClick={goChat}
+          onClick={handleConfirm}
         />
         {/* <IconButton
           text={Locale.Auth.SaasTips}

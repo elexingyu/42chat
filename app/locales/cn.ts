@@ -21,6 +21,7 @@ const cn = {
     SaasTips: "配置太麻烦，想要立即使用",
     TopTips:
       "🥳 NextChat AI 首发优惠，立刻解锁 OpenAI o1, GPT-4o, Claude-3.5 等最新大模型",
+    InvalidCode: "访问密码不正确或为空，请重新输入",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} 条对话`,

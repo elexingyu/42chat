@@ -86,6 +86,8 @@ import Locale from "../locales";
 import { IconButton } from "./button";
 import styles from "./chat.module.scss";
 
+import { useAuthCheck } from "../hooks/useAuthCheck";
+
 import {
   List,
   ListItem,
@@ -919,6 +921,7 @@ export function ShortcutKeyModal(props: { onClose: () => void }) {
 }
 
 function _Chat() {
+  useAuthCheck();
   type RenderMessage = ChatMessage & { preview?: boolean };
 
   const chatStore = useChatStore();

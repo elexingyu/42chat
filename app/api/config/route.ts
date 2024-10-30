@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 
 import { getServerSideConfig } from "../../config/server";
 
+import md5 from "spark-md5";
+
 const serverConfig = getServerSideConfig();
 
 // Danger! Do not hard code any secret value here!
@@ -14,6 +16,7 @@ const DANGER_CONFIG = {
   disableFastLink: serverConfig.disableFastLink,
   customModels: serverConfig.customModels,
   defaultModel: serverConfig.defaultModel,
+  hashedCode: md5.hash(process.env.CODE || "").trim(), // 添加这一行
 };
 
 declare global {

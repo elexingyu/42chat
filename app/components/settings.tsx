@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-
+import { useAuthCheck } from "../hooks/useAuthCheck";
 import styles from "./settings.module.scss";
 
 import ResetIcon from "../icons/reload.svg";
@@ -572,6 +572,7 @@ function SyncItems() {
 }
 
 export function Settings() {
+  useAuthCheck();
   const navigate = useNavigate();
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const config = useAppConfig();
