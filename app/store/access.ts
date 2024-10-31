@@ -173,14 +173,35 @@ export const useAccessStore = createPersistStore(
     async validateAccessCode() {
       const accessCode = get().accessCode;
 
-      try {
-        // 从 API 获取哈希后的正确密码
-        const response = await fetch("/api/config");
-        const config = await response.json();
+      console.log("accessCode:", accessCode);
 
-        // 验证密码
+      try {
+        const response = await fetch("/api/config", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ accessCode }), // 将访问码发送到后端
+        });
+
+        const config = await response.json();
+        console.log("config:", config);
+
         const hashedInputCode = md5.hash(accessCode).trim();
-        return hashedInputCode === config.hashedCode;
+        const isValid = !config.error; // 如果没有错误，则访问码有效
+
+        if (isValid) {
+          // 根据返回的配置更新状态
+          set((state) => ({
+            ...state,
+            openaiApiKey: config.apiKey, // 更新 apiKey
+            customModels: config.customModels,
+            defaultModel: config.defaultModel,
+            openaiUrl: config.baseUrl, // 使用 baseUrl
+          }));
+        }
+
+        return isValid;
       } catch (error) {
         console.error("验证访问码失败:", error);
         return false;

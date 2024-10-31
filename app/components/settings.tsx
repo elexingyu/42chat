@@ -664,6 +664,23 @@ export function Settings() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const resetAccessCode = () => {
+    accessStore.update((access) => {
+      access.openaiApiKey = "";
+      access.accessCode = "";
+      access.openaiUrl = ""; // 重置为默认值
+      access.customModels = "";
+      access.defaultModel = "";
+      // 其他需要重置的字段
+    });
+  };
+
+  useEffect(() => {
+    if (accessStore.accessCode === "") {
+      resetAccessCode();
+    }
+  }, [accessStore.accessCode]);
+
   const clientConfig = useMemo(() => getClientConfig(), []);
   const showAccessCode = enabledAccessControl && !clientConfig?.isApp;
 
@@ -710,24 +727,24 @@ export function Settings() {
   //   </ListItem>
   // );
 
-  const useCustomConfigComponent = // Conditionally render the following ListItem based on clientConfig.isApp
-    !clientConfig?.isApp && ( // only show if isApp is false
-      <ListItem
-        title={Locale.Settings.Access.CustomEndpoint.Title}
-        subTitle={Locale.Settings.Access.CustomEndpoint.SubTitle}
-      >
-        <input
-          aria-label={Locale.Settings.Access.CustomEndpoint.Title}
-          type="checkbox"
-          checked={accessStore.useCustomConfig}
-          onChange={(e) =>
-            accessStore.update(
-              (access) => (access.useCustomConfig = e.currentTarget.checked),
-            )
-          }
-        ></input>
-      </ListItem>
-    );
+  // const useCustomConfigComponent = // Conditionally render the following ListItem based on clientConfig.isApp
+  //   !clientConfig?.isApp && ( // only show if isApp is false
+  //     <ListItem
+  //       title={Locale.Settings.Access.CustomEndpoint.Title}
+  //       subTitle={Locale.Settings.Access.CustomEndpoint.SubTitle}
+  //     >
+  //       <input
+  //         aria-label={Locale.Settings.Access.CustomEndpoint.Title}
+  //         type="checkbox"
+  //         checked={accessStore.useCustomConfig}
+  //         onChange={(e) =>
+  //           accessStore.update(
+  //             (access) => (access.useCustomConfig = e.currentTarget.checked),
+  //           )
+  //         }
+  //       ></input>
+  //     </ListItem>
+  //   );
 
   const openAIConfigComponent = accessStore.provider ===
     ServiceProvider.OpenAI && (
@@ -1612,7 +1629,7 @@ export function Settings() {
 
           {!accessStore.hideUserApiKey && (
             <>
-              {useCustomConfigComponent}
+              {/* {useCustomConfigComponent} */}
 
               {accessStore.useCustomConfig && (
                 <>
@@ -1655,7 +1672,7 @@ export function Settings() {
             </>
           )}
 
-          {!shouldHideBalanceQuery && !clientConfig?.isApp ? (
+          {/* {!shouldHideBalanceQuery && !clientConfig?.isApp ? (
             <ListItem
               title={Locale.Settings.Usage.Title}
               subTitle={
@@ -1679,9 +1696,9 @@ export function Settings() {
                 />
               )}
             </ListItem>
-          ) : null}
+          ) : null} */}
 
-          <ListItem
+          {/* <ListItem
             title={Locale.Settings.Access.CustomModel.Title}
             subTitle={Locale.Settings.Access.CustomModel.SubTitle}
           >
@@ -1696,7 +1713,7 @@ export function Settings() {
                 )
               }
             ></input>
-          </ListItem>
+          </ListItem> */}
         </List>
 
         <List>

@@ -2006,5 +2006,34 @@ function _Chat() {
 export function Chat() {
   const chatStore = useChatStore();
   const sessionIndex = chatStore.currentSessionIndex;
+  const navigate = useNavigate();
+  const accessStore = useAccessStore();
+
+  // 添加环境变量检查，使用 sessionStorage 来避免重复检查
+  useEffect(() => {
+    const checkEnvChanges = async () => {
+      const hasChecked = sessionStorage.getItem("envChecked");
+      console.log("hasChecked", hasChecked);
+      if (!hasChecked && accessStore.accessCode) {
+        console.log("checkEnvChanges");
+        const isValid = await accessStore.validateAccessCode();
+        if (!isValid) {
+          console.log("[Env Check] Environment variables have changed");
+          accessStore.update((access) => {
+            access.openaiApiKey = "";
+            access.accessCode = "";
+            access.openaiUrl = "";
+            access.customModels = "";
+            access.defaultModel = "";
+          });
+          navigate(Path.Auth);
+        }
+        sessionStorage.setItem("envChecked", "true");
+      }
+    };
+
+    checkEnvChanges();
+  }, [accessStore, navigate]);
+
   return <_Chat key={sessionIndex}></_Chat>;
 }

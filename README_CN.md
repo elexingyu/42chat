@@ -51,7 +51,7 @@
 - 删除掉原先的仓库；
 - 使用页面右上角的 fork 按钮，fork 本项目；
 - 在 Vercel 重新选择并部署，[请查看详细教程](./docs/vercel-cn.md#如何新建项目)。
- 
+
 ### 打开自动更新
 
 > 如果你遇到了 Upstream Sync 执行错误，请[手动 Sync Fork 一次](./README_CN.md#手动更新代码)！

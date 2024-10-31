@@ -113,9 +113,43 @@ export const getServerSideConfig = () => {
     );
   }
 
+  const accessCode = process.env.CODE;
+  const accessCodesMap = new Map<
+    string,
+    {
+      apiKey: string;
+      customModels: string;
+      defaultModel: string;
+      baseUrl: string;
+    }
+  >();
+
+  // Default configuration
+  if (accessCode) {
+    accessCodesMap.set(md5.hash(accessCode.trim()), {
+      apiKey: process.env.OPENAI_API_KEY || "",
+      customModels: process.env.CUSTOM_MODELS || "",
+      defaultModel: process.env.DEFAULT_MODEL || "",
+      baseUrl: process.env.BASE_URL || "", // 添加 baseUrl
+    });
+  }
+
+  // Additional configurations
+  for (let i = 1; process.env[`CODE_${i}`]; i++) {
+    const code = process.env[`CODE_${i}`];
+    if (code) {
+      accessCodesMap.set(md5.hash(code.trim()), {
+        apiKey: process.env[`OPENAI_API_KEY_${i}`] || "",
+        customModels: process.env[`CUSTOM_MODELS_${i}`] || "",
+        defaultModel: process.env[`DEFAULT_MODEL_${i}`] || "",
+        baseUrl: process.env.BASE_URL || "", // 添加 baseUrl
+      });
+    }
+  }
+
   const disableGPT4 = !!process.env.DISABLE_GPT4;
-  let customModels = process.env.CUSTOM_MODELS ?? "";
-  let defaultModel = process.env.DEFAULT_MODEL ?? "";
+  let customModels = process.env.CUSTOM_MODELS || "";
+  let defaultModel = process.env.DEFAULT_MODEL || "";
 
   if (disableGPT4) {
     if (customModels) customModels += ",";
@@ -160,7 +194,7 @@ export const getServerSideConfig = () => {
 
   return {
     baseUrl: process.env.BASE_URL,
-    apiKey: getApiKey(process.env.OPENAI_API_KEY),
+    accessCodesMap, // 返回访问码和用户配置的映射
     openaiOrgId: process.env.OPENAI_ORG_ID,
 
     isStability,
