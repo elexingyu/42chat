@@ -97,7 +97,13 @@ export function auth(req: NextRequest, modelProvider: ModelProvider) {
         if (req.nextUrl.pathname.includes("azure/deployments")) {
           systemApiKey = serverConfig.azureApiKey;
         } else {
-          systemApiKey = serverConfig.apiKey;
+          // 从 accessCodesMap 中获取对应的 apiKey
+          const hashedAccessCode = md5.hash(accessCode ?? "").trim();
+          const userConfig = serverConfig.accessCodesMap.get(hashedAccessCode);
+          if (!userConfig?.apiKey) {
+            throw new Error("No API key available for this access code");
+          }
+          systemApiKey = userConfig.apiKey;
         }
     }
 
