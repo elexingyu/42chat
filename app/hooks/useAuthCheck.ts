@@ -7,7 +7,7 @@ export function useAuthCheck() {
   const navigate = useNavigate();
   const accessStore = useAccessStore();
 
-  // 重置访问凭证的函数
+  // 重置所有凭证
   const resetAccessCredentials = () => {
     accessStore.update((access) => {
       access.openaiApiKey = "";
@@ -15,13 +15,28 @@ export function useAuthCheck() {
       access.openaiUrl = "";
       access.customModels = "";
       access.defaultModel = "";
-      // 可以根据需要添加其他需要重置的字段
+    });
+  };
+
+  // 更新配置但保持访问码
+  const updateConfiguration = (config: {
+    apiKey: string;
+    customModels: string;
+    defaultModel: string;
+    baseUrl: string;
+  }) => {
+    accessStore.update((access) => {
+      // 只更新配置相关字段
+      access.openaiApiKey = config.apiKey;
+      access.customModels = config.customModels;
+      access.defaultModel = config.defaultModel;
+      access.openaiUrl = config.baseUrl;
     });
   };
 
   useEffect(() => {
     const checkAuth = async () => {
-      // 如果有访问码，验证其有效性
+      // 如果有访问码，验证其有效性和配置
       if (accessStore.accessCode) {
         try {
           const response = await fetch("/api/config", {
@@ -35,10 +50,25 @@ export function useAuthCheck() {
           });
 
           if (!response.ok) {
-            // 如果验证失败，重置凭证并跳转到认证页面
+            // 访问码无效，完全重置
             resetAccessCredentials();
             navigate(Path.Auth);
             return;
+          }
+
+          // 获取最新配置
+          const config = await response.json();
+
+          // 检查是否需要更新配置
+          const configChanged =
+            config.customModels !== accessStore.customModels ||
+            config.defaultModel !== accessStore.defaultModel ||
+            config.baseUrl !== accessStore.openaiUrl ||
+            config.apiKey !== accessStore.openaiApiKey;
+
+          if (configChanged) {
+            // 只更新配置，保持访问码
+            updateConfiguration(config);
           }
         } catch (e) {
           console.error("[Auth] failed to verify access code:", e);
