@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAccessStore } from "../store";
 import { Path } from "../constant";
@@ -6,6 +6,7 @@ import { Path } from "../constant";
 export function useAuthCheck() {
   const navigate = useNavigate();
   const accessStore = useAccessStore();
+  const [isChecking, setIsChecking] = useState(false);
 
   // 重置所有凭证
   const resetAccessCredentials = () => {
@@ -36,9 +37,13 @@ export function useAuthCheck() {
 
   useEffect(() => {
     const checkAuth = async () => {
-      // 如果有访问码，验证其有效性和配置
-      if (accessStore.accessCode) {
-        try {
+      // 避免重复检查
+      if (isChecking) return;
+      setIsChecking(true);
+
+      try {
+        // 如果有访问码,验证其有效性
+        if (accessStore.accessCode) {
           const response = await fetch("/api/config", {
             method: "POST",
             headers: {
@@ -49,63 +54,29 @@ export function useAuthCheck() {
             }),
           });
 
-          if (!response.ok) {
-            // 访问码无效，完全重置
+          if (response.status === 401 || response.status === 403) {
             resetAccessCredentials();
-            navigate(Path.Auth);
+            navigate(Path.Auth, { replace: true }); // 使用 replace 避免产生历史记录
             return;
           }
 
-          // 获取最新配置
-          const config = await response.json();
-
-          // 检查是否需要更新配置
-          const configChanged =
-            config.customModels !== accessStore.customModels ||
-            config.defaultModel !== accessStore.defaultModel ||
-            config.baseUrl !== accessStore.openaiUrl ||
-            config.apiKey !== accessStore.openaiApiKey;
-
-          if (configChanged) {
-            // 只更新配置，保持访问码
+          if (response.ok) {
+            const config = await response.json();
             updateConfiguration(config);
           }
-        } catch (e) {
-          console.error("[Auth] failed to verify access code:", e);
-          resetAccessCredentials();
-          navigate(Path.Auth);
-          return;
+        } else if (window.location.pathname !== Path.Auth) {
+          // 没有访问码且不在验证页面时跳转
+          navigate(Path.Auth, { replace: true });
         }
-      }
-
-      // 原有的授权检查逻辑
-      const isAuthorized =
-        accessStore.isValidOpenAI() ||
-        accessStore.isValidAzure() ||
-        accessStore.isValidGoogle() ||
-        accessStore.isValidAnthropic() ||
-        accessStore.isValidBaidu() ||
-        accessStore.isValidByteDance() ||
-        accessStore.isValidAlibaba() ||
-        accessStore.isValidTencent() ||
-        accessStore.isValidMoonshot() ||
-        accessStore.isValidIflytek() ||
-        !accessStore.enabledAccessControl() ||
-        (accessStore.enabledAccessControl() &&
-          (await accessStore.validateAccessCode()));
-
-      const currentPath = window.location.hash.slice(1);
-
-      if (!isAuthorized && currentPath !== Path.Auth) {
-        navigate(Path.Auth);
+      } catch (e) {
+        console.error("[Auth] failed to verify access code:", e);
+        resetAccessCredentials();
+        navigate(Path.Auth, { replace: true });
+      } finally {
+        setIsChecking(false);
       }
     };
 
     checkAuth();
-    window.addEventListener("hashchange", checkAuth);
-
-    return () => {
-      window.removeEventListener("hashchange", checkAuth);
-    };
-  }, [navigate, accessStore]);
+  }, [navigate, accessStore.accessCode]); // 只在 accessCode 变化时重新验证
 }
