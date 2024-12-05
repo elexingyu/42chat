@@ -2013,14 +2013,10 @@ export function Chat() {
   useEffect(() => {
     const checkEnvChanges = async () => {
       const hasChecked = sessionStorage.getItem("envChecked");
-      console.log("hasChecked", hasChecked);
       if (!hasChecked && accessStore.accessCode) {
-        console.log("checkEnvChanges");
         const isValid = await accessStore.validateAccessCode();
         if (!isValid) {
-          console.log("[Env Check] Environment variables have changed");
           accessStore.update((access) => {
-            access.openaiApiKey = "";
             access.accessCode = "";
             access.openaiUrl = "";
             access.customModels = "";

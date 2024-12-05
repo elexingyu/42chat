@@ -22,17 +22,14 @@ declare global {
 
 async function handle(req: Request) {
   try {
-    console.log("[Config API] Request Method:", req.method);
-
     if (req.method === "POST") {
       const rawBody = await req.text();
-      console.log("[Config API] Raw request body:", rawBody);
 
       let body: { accessCode?: string } = {};
       try {
         body = rawBody ? JSON.parse(rawBody) : {};
       } catch (e) {
-        console.error("[Config API] JSON parse error:", e);
+        console.error("[Config API] Invalid JSON format");
         return NextResponse.json(
           { error: "Invalid JSON format" },
           { status: 400 },
@@ -40,17 +37,6 @@ async function handle(req: Request) {
       }
 
       const accessCode = body?.accessCode;
-
-      // 如果需要访问码但未提供,返回401
-      if (
-        serverConfig.needCode &&
-        (!accessCode || typeof accessCode !== "string")
-      ) {
-        return NextResponse.json(
-          { error: "Access code required" },
-          { status: 401 },
-        );
-      }
 
       if (accessCode && typeof accessCode === "string") {
         const hashedInputCode = md5.hash(accessCode.trim());
@@ -70,21 +56,15 @@ async function handle(req: Request) {
           );
         }
       }
-    }
 
-    // GET 请求时,如果需要访问码则返回401
-    if (serverConfig.needCode) {
-      return NextResponse.json(
-        { error: "Access code required" },
-        { status: 401 },
-      );
+      return NextResponse.json(DANGER_CONFIG);
     }
 
     return NextResponse.json(DANGER_CONFIG);
   } catch (error) {
-    console.error("[Config API] Unexpected error:", error);
+    console.error("[Config API] Unexpected error");
     return NextResponse.json(
-      { error: "Internal Server Error", details: (error as Error).message },
+      { error: "Internal Server Error" },
       { status: 500 },
     );
   }

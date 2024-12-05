@@ -19,7 +19,6 @@ import { getClientConfig } from "../config/client";
 import { createPersistStore } from "../utils/store";
 import { ensure } from "../utils/clone";
 import { DEFAULT_CONFIG } from "./config";
-import md5 from "spark-md5";
 
 let fetchState = 0; // 0 not fetch, 1 fetching, 2 done
 
@@ -173,37 +172,32 @@ export const useAccessStore = createPersistStore(
     async validateAccessCode() {
       const accessCode = get().accessCode;
 
-      console.log("accessCode:", accessCode);
-
       try {
         const response = await fetch("/api/config", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ accessCode }), // 将访问码发送到后端
+          body: JSON.stringify({ accessCode }),
         });
 
         const config = await response.json();
-        console.log("config:", config);
 
-        const hashedInputCode = md5.hash(accessCode).trim();
-        const isValid = !config.error; // 如果没有错误，则访问码有效
+        const isValid = !config.error;
 
         if (isValid) {
-          // 根据返回的配置更新状态
           set((state) => ({
             ...state,
-            openaiApiKey: config.apiKey, // 更新 apiKey
+            openaiApiKey: config.apiKey,
             customModels: config.customModels,
             defaultModel: config.defaultModel,
-            openaiUrl: config.baseUrl, // 使用 baseUrl
+            openaiUrl: config.baseUrl,
           }));
         }
 
         return isValid;
       } catch (error) {
-        console.error("验证访问码失败:", error);
+        console.error("[Auth] Failed to validate access code");
         return false;
       }
     },
