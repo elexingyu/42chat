@@ -223,7 +223,7 @@ export class ChatGPTApi implements LLMApi {
       // O1 not support image, tools (plugin in ChatGPTNextWeb) and system, stream, logprobs, temperature, top_p, n, presence_penalty, frequency_penalty yet.
       requestPayload = {
         messages,
-        stream: !isO1 ? options.config.stream : false,
+        stream: isO1 || isGPT5 ? false : options.config.stream,
         model: modelConfig.model,
         temperature: !isO1 && !isGPT5 ? modelConfig.temperature : 1,
         presence_penalty: !isO1 ? modelConfig.presence_penalty : 0,
@@ -241,7 +241,8 @@ export class ChatGPTApi implements LLMApi {
 
     console.log("[Request] openai payload: ", requestPayload);
 
-    const shouldStream = !isDalle3 && !!options.config.stream && !isO1;
+    const shouldStream =
+      !isDalle3 && !!options.config.stream && !isO1 && !isGPT5;
     const controller = new AbortController();
     options.onController?.(controller);
 
