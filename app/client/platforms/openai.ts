@@ -194,6 +194,7 @@ export class ChatGPTApi implements LLMApi {
 
     const isDalle3 = _isDalle3(options.config.model);
     const isO1 = options.config.model.startsWith("o1");
+    const isGPT5 = options.config.model.startsWith("gpt-5");
     if (isDalle3) {
       const prompt = getMessageTextContent(
         options.messages.slice(-1)?.pop() as any,
@@ -224,7 +225,7 @@ export class ChatGPTApi implements LLMApi {
         messages,
         stream: !isO1 ? options.config.stream : false,
         model: modelConfig.model,
-        temperature: !isO1 ? modelConfig.temperature : 1,
+        temperature: !isO1 && !isGPT5 ? modelConfig.temperature : 1,
         presence_penalty: !isO1 ? modelConfig.presence_penalty : 0,
         frequency_penalty: !isO1 ? modelConfig.frequency_penalty : 0,
         top_p: !isO1 ? modelConfig.top_p : 1,
